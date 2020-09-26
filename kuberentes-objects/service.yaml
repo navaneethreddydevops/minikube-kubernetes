@@ -2,11 +2,42 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service
+  name: wordpress
+  labels:
+    app: wordpress
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: wordpress
+    tier: frontend
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
 spec:
   selector:
-    app: MyApp
-  ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 9376
+    matchLabels:
+      app: wordpress
+      tier: frontend
+  strategy:
+      type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wordpress
+        tier: frontend
+    spec:
+      containers:
+      - name: wordpress
+        image: wordpress:4.8-apache
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+
