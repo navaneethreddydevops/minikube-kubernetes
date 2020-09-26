@@ -25,7 +25,7 @@ spec:
     metadata:
       labels:
         app: datadog-cluster-agent
-      name: datadog-agent
+      name: datadog-agent-testing
       annotations:
         ad.datadoghq.com/datadog-cluster-agent.check_names: '["prometheus"]'
         ad.datadoghq.com/datadog-cluster-agent.init_configs: '[{}]'
