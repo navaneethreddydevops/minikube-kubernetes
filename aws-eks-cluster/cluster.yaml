@@ -11,7 +11,6 @@ nodeGroups:
     labels: { role: workers }
     minSize: 1
     maxSize: 5
-    availabilityZones: ["us-west-1a"]
     instancesDistribution:
       maxPrice: 0.017
       instanceTypes: ["t3.small", "t3.medium"] # At least one instance type should be specified
@@ -25,7 +24,6 @@ nodeGroups:
     instanceType: m5.xlarge
     minSize: 1
     maxSize: 3
-    availabilityZones: ["us-west-1b"]
     ssh:
       publicKeyName: 'keypair'
 
