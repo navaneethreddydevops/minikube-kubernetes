@@ -1,17 +1,28 @@
 import hudson.util.RemotingDiagnostics
 import jenkins.model.Jenkins
+import hudson.model.*
+import hudson.EnvVars
+import groovy.json.JsonSlurperClassic
+import groovy.json.JsonBuilder
+import groovy.json.JsonOutput
+import java.net.URL
 
-String agent_name = 'your agent name'
-//groovy script you want executed on an agent
-groovy_script = '''
-println System.getenv("PATH")
-println "uname -a".execute().text
-'''.trim()
-
-String result
-Jenkins.instance.slaves.find { agent ->
-    agent.name == agent_name
-}.with { agent ->
-    result = RemotingDiagnostics.executeGroovy(groovy_script, agent.channel)
+pipeline {
+   agent any
+   stages {
+    stage('Checkout') {
+      steps {
+        script {
+           sh "ls -lart ./*" 
+           sh "git branch -a"
+          }
+       }
+    }
+    stage('Checkout') {
+      steps {
+        def env = System.getenv();
+        System.setProperty('org.apache.commons.jelly.tags.fmt.timeZone', env['JENKINS_TIMEZONE']);
+       }
+    }
+  }
 }
-println result
