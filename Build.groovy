@@ -20,10 +20,5 @@ pipeline {
           }
        }
     }
-    stage('Checkout') {
-      steps {
-        System.setProperty('org.apache.commons.jelly.tags.fmt.timeZone', env['JENKINS_TIMEZONE']);
-       }
-    }
   }
 }
