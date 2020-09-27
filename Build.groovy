@@ -8,11 +8,7 @@ import groovy.json.JsonOutput
 import java.net.URL
 
 pipeline {
-  agent {
-    node {
-      label 'any'
-    }
-  }
+  agent any
   options {
     timestamps()
   }
