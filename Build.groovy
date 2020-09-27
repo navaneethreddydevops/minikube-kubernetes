@@ -7,6 +7,8 @@ import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
 import java.net.URL
 
+def env = System.getenv();
+
 pipeline {
    agent any
    stages {
@@ -20,7 +22,6 @@ pipeline {
     }
     stage('Checkout') {
       steps {
-        def env = System.getenv();
         System.setProperty('org.apache.commons.jelly.tags.fmt.timeZone', env['JENKINS_TIMEZONE']);
        }
     }
