@@ -27,3 +27,14 @@ Lists,Arrays,collections
 
 Scalars:
 
+Comments:
+
+comments in yaml are defines with # 
+
+Tags:
+
+%TAG ! tag:hostdata:phl
+
+Anchors:
+
+Anchors are defined with &
