@@ -8,7 +8,9 @@ import groovy.json.JsonOutput
 import java.net.URL
 
 pipeline {
-  agent docker
+  agent {
+  label 'docker'
+  }
   options {
     timestamps()
   }
