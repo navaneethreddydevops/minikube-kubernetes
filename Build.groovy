@@ -26,6 +26,7 @@ pipeline {
         docker {
           reuseNode true
           image 'maven:3.5.0-jdk-8'
+          volume '/var/run/docker.sock:/var/run/docker.sock'
         }
       }
       steps {
@@ -55,6 +56,7 @@ pipeline {
               // we can use the same image and workspace as we did previously
               reuseNode true
               image 'maven:3.5.0-jdk-8'
+              volume '/var/run/docker.sock:/var/run/docker.sock'
             }
           }
           environment {
