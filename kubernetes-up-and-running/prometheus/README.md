@@ -1,9 +1,7 @@
 # Prometheus Setup 
 kubectl get --raw /metrics
 kubectl create namespace prometheus
-helm install prometheus stable/prometheus \\n   
- --namespace prometheus \\n    
- --set alertmanager.persistentVolume.storageClass="gp2",server.persistentVolume.storageClass="gp2"
+helm install prometheus stable/prometheus --namespace prometheus --set alertmanager.persistentVolume.storageClass="gp2",server.persistentVolume.storageClass="gp2"
 kubectl get pods -n prometheus
 kubectl --namespace=prometheus port-forward deploy/prometheus-server 9090
 
