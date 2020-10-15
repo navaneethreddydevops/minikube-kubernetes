@@ -8,11 +8,9 @@ import groovy.json.JsonOutput
 import java.net.URL
 
 pipeline {
-  node {
-      label 'build'
-  }
+  agent any
   options {
-    timestamps()
+    parallelsAlwaysFailFast()
   }
   stages {
     stage('Build') {
