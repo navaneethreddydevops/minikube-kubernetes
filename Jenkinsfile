@@ -9,7 +9,7 @@ import java.net.URL
 
 pipeline {
   agent {
-  label 'any'
+      label 'build'
   }
   options {
     timestamps()
