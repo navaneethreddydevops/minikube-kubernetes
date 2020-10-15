@@ -8,7 +8,7 @@ import groovy.json.JsonOutput
 import java.net.URL
 
 pipeline {
-  agent {
+  node {
       label 'build'
   }
   options {
