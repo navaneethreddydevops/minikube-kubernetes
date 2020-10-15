@@ -21,7 +21,6 @@ pipeline {
         export AWS_ACCESS_KEY=${arams.AWS_SESSION_TOKEN}
           }
         }
-      }
     stage('Build') {
       steps {
         dir("${env.WORKSPACE}/aws-eks-cluster"){
