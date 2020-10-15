@@ -16,9 +16,11 @@ pipeline {
   stages {
     stage('Environmnet') {
       steps {
+        sh '''
         export AWS_ACCESS_KEY="${params.AWS_ACCESS_KEY}"
         export AWS_ACCESS_KEY="${params.AWS_SECRET_KEY}"
         export AWS_ACCESS_KEY="${params.AWS_SESSION_TOKEN}"
+        '''
           }
         }
     stage('Build') {
