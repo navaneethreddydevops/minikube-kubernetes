@@ -6,7 +6,14 @@ spec:
   containers:
     - image: gcr.io/kuar-demo/kuard-amd64:blue
       name: kuard
-      livenessProbe:
+      resources:         # Resource Limits for the Pod
+        requests:
+          cpu: "500m"
+          memory: "128Mi"
+        limits:
+          cpu: "1000m"
+          memory: "256Mi"
+      livenessProbe:     # Liveliness Check for Application Health Endpoint to make sure application is up and running
         httpGet:
           path: /healthy
           port: 8080
