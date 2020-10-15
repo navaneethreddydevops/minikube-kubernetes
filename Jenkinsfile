@@ -1,12 +1,3 @@
-import hudson.util.RemotingDiagnostics
-import jenkins.model.Jenkins
-import hudson.model.*
-import hudson.EnvVars
-import groovy.json.JsonSlurperClassic
-import groovy.json.JsonBuilder
-import groovy.json.JsonOutput
-import java.net.URL
-
 pipeline {
   agent any
   options {
@@ -14,9 +5,6 @@ pipeline {
   }
   stages {
     stage('Build') {
-      agent {
-          any
-      }
       steps {
           sh '''
           /usr/local/bin/eksctl --version
@@ -25,7 +13,6 @@ pipeline {
       }
     }
   }
-
   post {
     failure {
       // notify users when the Pipeline fails
