@@ -6,20 +6,12 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        dir("${env.WORKSPACE}/"){
+        dir("${env.WORKSPACE}/aws-eks-cluster"){
           sh '''
-          /usr/local/bin/eksctl
+          /usr/local/bin/eksctl create cluster -f cluster.yaml
           '''
           }
         }
       }
-    }
-  }
-  post {
-    failure {
-      // notify users when the Pipeline fails
-      mail to: 'navaneethreddydevops@gmail.com',
-          subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-          body: "Something is wrong with ${env.BUILD_URL}"
     }
   }
