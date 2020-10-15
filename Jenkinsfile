@@ -9,8 +9,8 @@ pipeline {
         AWS_SESSION_TOKEN=''
     }
   parameters{
-      string(name: 'AWS_ACCESS_KEY', defaultValue: '', description: 'ACCESS_KEY'),
-      string(name: 'AWS_SECRET_KEY', defaultValue: '', description: 'SECRET_KEY'),
+      string(name: 'AWS_ACCESS_KEY', defaultValue: '', description: 'ACCESS_KEY')
+      string(name: 'AWS_SECRET_KEY', defaultValue: '', description: 'SECRET_KEY')
       string(name: 'AWS_SESSION_TOKEN', defaultValue: '', description: 'AWS_SESSION_TOKEN')
   }
   stages {
