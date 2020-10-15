@@ -8,7 +8,7 @@ pipeline {
       steps {
         dir("${env.WORKSPACE}/"){
           sh '''
-          /usr/local/bin/eksctl --version
+          /usr/local/bin/eksctl
           '''
           }
         }
