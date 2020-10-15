@@ -9,7 +9,7 @@ import java.net.URL
 
 pipeline {
   agent {
-  label 'docker'
+  label 'any'
   }
   options {
     timestamps()
