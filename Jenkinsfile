@@ -18,7 +18,7 @@ pipeline {
       steps {
         export AWS_ACCESS_KEY=${params.AWS_ACCESS_KEY}
         export AWS_ACCESS_KEY=${params.AWS_SECRET_KEY}
-        export AWS_ACCESS_KEY=${arams.AWS_SESSION_TOKEN}
+        export AWS_ACCESS_KEY=${params.AWS_SESSION_TOKEN}
           }
         }
     stage('Build') {
