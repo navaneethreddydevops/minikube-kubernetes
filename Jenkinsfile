@@ -6,9 +6,11 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+        dir("${env.WORKSPACE}/"){
           sh '''
           /usr/local/bin/eksctl --version
           '''
+          }
         }
       }
     }
