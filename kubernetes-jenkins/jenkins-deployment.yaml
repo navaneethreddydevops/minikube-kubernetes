@@ -1,0 +1,47 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-master
+  namespace: devops
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: jenkins-master
+  template:
+    metadata:
+      labels:
+        app: jenkins-master
+    spec:
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+        - name: jenkins-master-pod
+          image: kumargaurav522/jenkins-master:latest
+          env:
+            - name: JAVA_OPTS
+              value: -Djenkins.install.runSetupWizard=false
+            - name: JAVA_ARGS
+              value: -Dmail.smtp.starttls.enable=true
+          ports:
+            - name: http-port
+              containerPort: 8080
+            - name: jnlp-port
+              containerPort: 50000
+          resources:
+            limits:
+              cpu: "900"
+              memory: "700Mi"
+            requests:
+              cpu: "800m"
+              memory: "500Mi"
+          volumeMounts:
+            - name: jenkins-volume
+              mountPath: /var/jenkins_home
+      volumes:
+        - name: jenkins-volume
+          persistentVolumeClaim:
+            claimName: jenkins-volume
