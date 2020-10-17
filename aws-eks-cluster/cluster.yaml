@@ -5,7 +5,7 @@ kind: ClusterConfig
 metadata:
   name: eks-cluster
   region: us-west-2
-  version: "1.18"
+  version: "1.17"
 
 # Adding the Private VPC subnets
 # vpc:
