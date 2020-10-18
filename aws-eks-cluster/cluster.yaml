@@ -18,11 +18,11 @@ metadata:
 nodeGroups:
   - name: spot-nodegroup
     labels: { role: workers }
-    minSize: 1
-    maxSize: 2
+    minSize: 2
+    maxSize: 5
     instancesDistribution:
       maxPrice: 0.017
-      instanceTypes: ["t2.micro"] # At least one instance type should be specified
+      instanceTypes: ["t2.micro","c4.large"] # At least one instance type should be specified
       onDemandBaseCapacity: 0
       onDemandPercentageAboveBaseCapacity: 50
       spotInstancePools: 2
@@ -30,11 +30,11 @@ nodeGroups:
       publicKeyName: 'keypair'
   - name: nodegroup-2
     labels: {role: worker}
-    minSize: 1
-    maxSize: 2
+    minSize: 2
+    maxSize: 5
     instancesDistribution:
       maxPrice: 0.017
-      instanceTypes: ["t2.micro"] # At least one instance type should be specified
+      instanceTypes: ["t2.micro","c4.large"] # At least one instance type should be specified
       onDemandBaseCapacity: 0
       onDemandPercentageAboveBaseCapacity: 50
       spotInstancePools: 2
