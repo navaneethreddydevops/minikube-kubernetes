@@ -1,0 +1,38 @@
+---
+apiVersion: v1
+kind : Service
+metadata:
+  name: nginx
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: development.navaneethreddydevops.com
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert : arn:aws:acm:us-west-2:035612810169:certificate/eafb58f8-9cc3-4d97-afe4-026600c6cd65
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol : http
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    name: http
+    targetPort: 80
+  - port: 443
+    name: https
+    targetPort: 80
+  selector:
+    app: nginx
+---
+apiVersion: apps/v1
+kind : Deployment
+metadata:
+  name: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx

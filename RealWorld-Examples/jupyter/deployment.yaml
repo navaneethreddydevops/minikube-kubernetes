@@ -1,20 +1,27 @@
---- 
+---
 kind: Service
 apiVersion: v1
 metadata:
   name: jupyter
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+    external-dns.alpha.kubernetes.io/hostname: jupyter.navaneethreddydevops.com
     service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-west-2:035612810169:certificate/eafb58f8-9cc3-4d97-afe4-026600c6cd65
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol : http
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
 spec:
   selector:
     app: jupyter
   type: LoadBalancer
   externalName: navaneethreddydevops.com
-  ports:
-  - name: web
-    port: 443
-    targetPort: 9376
+  ports: # These are for Loadbalancer Port Mapping
+  - port: 80
+    name: http
+    targetPort: 8888
+    nodePort: 30007
+  - port: 443
+    name: web
+    targetPort: 8888
+    nodePort: 30008
     protocol: TCP
   selector:
     app: jupyter
@@ -34,7 +41,7 @@ spec:
         name: jupyter
     spec:
       containers:
-      - name: jupyter
-        image: jupyter/scipy-notebook:abdb27a6dfbb 
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
+      - image: jupyter/base-notebook:latest
+        name: jupyter
+        ports:
+        - containerPort: 8888 #This should map to port of container Image
