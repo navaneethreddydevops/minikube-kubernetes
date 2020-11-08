@@ -15,40 +15,24 @@ nodeGroups:
     maxSize: 5
     instancesDistribution:
       maxPrice: 0.017
-      instanceTypes: ["t2.micro","c4.large"] # At least one instance type should be specified
+      instanceTypes: ["t2.micro", "c4.large"] # At least one instance type should be specified
       onDemandBaseCapacity: 0
-      onDemandPercentageAboveBaseCapacity: 50
+      onDemandPercentageAboveBaseCapacity: 0
       spotInstancePools: 2
     ssh:
-      publicKeyName: 'keypair'
+      publicKeyName: "keypair"
   - name: nodegroup-2
-    labels: {role: worker}
+    labels: { role: worker }
     minSize: 2
     maxSize: 5
     instancesDistribution:
       maxPrice: 0.017
-      instanceTypes: ["t2.micro","c4.large"] # At least one instance type should be specified
+      instanceTypes: ["t2.micro", "c4.large"] # At least one instance type should be specified
       onDemandBaseCapacity: 0
-      onDemandPercentageAboveBaseCapacity: 50
+      onDemandPercentageAboveBaseCapacity: 0
       spotInstancePools: 2
     ssh:
-      publicKeyName: 'keypair'
-  # - name: nodegroup-3
-  #   labels: {role: worker}
-  #   minSize: 2
-  #   maxSize: 5
-  #   instancesDistribution:
-  #     maxPrice: 0.017
-  #     instanceTypes: ["c4.large"] # At least one instance type should be specified
-  #     onDemandBaseCapacity: 0
-  #     onDemandPercentageAboveBaseCapacity: 50
-  #     spotInstancePools: 2
-  #   ssh:
-  #     publicKeyName: 'keypair'
-  #   # iam:
-  #   #   withAddonPolicies:
-  #   #     externalDNS: true
-  #   #     certManager: true
+      publicKeyName: "keypair"
 
 cloudWatch:
   clusterLogging:
