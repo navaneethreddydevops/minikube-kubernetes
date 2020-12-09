@@ -1,33 +1,33 @@
---- 
-apiVersion: v1 
-kind: Secret 
+---
+apiVersion: v1
+kind: Secret
 metadata:
   creationTimestamp: "null"
-  name: tls-secret-name  #### TLS Certificates for Loadbalancer to accept HTTPS Requests
-type: kubernetes.io/tls 
+  name: tls-secret-name #### TLS Certificates for Loadbalancer to accept HTTPS Requests
+type: kubernetes.io/tls
 data:
 tls.crt: <base64 encoded certificate>
 tls.key: <base64 encoded private key>
 
---- 
-apiVersion: extensions/v1beta1 
+---
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: host-ingress 
+  name: host-ingress
 spec:
-  tls: 
-  - hosts: 
-    - alpaca.example.com
-    secretName: tls-secret-name
+  tls:
+    - hosts:
+        - alpaca.example.com
+      secretName: tls-secret-name
   rules:
-  - host: alpaca.example.com
-    http: 
-      paths: 
-      - path: "/"
-        backend: 
-          serviceName: bandicoot 
-          servicePort: 8080
-      - path: "/a"
-        backend: 
-          serviceName: alpaca
-          servicePort: 8080
+    - host: alpaca.example.com
+      http:
+        paths:
+          - path: "/"
+            backend:
+              serviceName: bandicoot
+              servicePort: 8080
+          - path: "/a"
+            backend:
+              serviceName: alpaca
+              servicePort: 8080
