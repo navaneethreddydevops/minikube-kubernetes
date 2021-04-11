@@ -5,14 +5,14 @@ kind: ClusterConfig
 metadata:
   name: eks-cluster
   region: us-west-2
-  version: "1.17"
+  version: "1.19"
 vpc:
   cidr: "10.0.0.0/16"
 nodeGroups:
   - name: spot-nodegroup
     labels: { role: workers }
-    minSize: 2
-    maxSize: 5
+    minSize: 1
+    maxSize: 2
     instancesDistribution:
       maxPrice: 0.017
       instanceTypes: ["t2.micro", "c4.large"] # At least one instance type should be specified
@@ -23,8 +23,8 @@ nodeGroups:
       publicKeyName: "keypair"
   - name: nodegroup-2
     labels: { role: worker }
-    minSize: 2
-    maxSize: 5
+    minSize: 1
+    maxSize: 2
     instancesDistribution:
       maxPrice: 0.017
       instanceTypes: ["t2.micro", "c4.large"] # At least one instance type should be specified
@@ -33,6 +33,33 @@ nodeGroups:
       spotInstancePools: 2
     ssh:
       publicKeyName: "keypair"
+# iam:
+#   withOIDC: true
+
+# addons:
+# - name: vpc-cni
+#   version: 1.7.5 # optional
+#   attachPolicyARNs: #optional
+#   - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+#   serviceAccountRoleARN: arn:aws:iam::aws:policy/AmazonEKSCNIAccess # optional
+#   tags: # optional
+#     team: eks
+#   attachPolicy: # optional
+#     Statement:
+#     - Effect: Allow
+#       Action:
+#       - ec2:AssignPrivateIpAddresses
+#       - ec2:AttachNetworkInterface
+#       - ec2:CreateNetworkInterface
+#       - ec2:DeleteNetworkInterface
+#       - ec2:DescribeInstances
+#       - ec2:DescribeTags
+#       - ec2:DescribeNetworkInterfaces
+#       - ec2:DescribeInstanceTypes
+#       - ec2:DetachNetworkInterface
+#       - ec2:ModifyNetworkInterfaceAttribute
+#       - ec2:UnassignPrivateIpAddresses
+#       Resource: '*'
 
 cloudWatch:
   clusterLogging:
