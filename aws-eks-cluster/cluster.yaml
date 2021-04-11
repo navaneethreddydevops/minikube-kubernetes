@@ -33,6 +33,15 @@ nodeGroups:
       spotInstancePools: 2
     ssh:
       publicKeyName: "keypair"
+# fargateProfiles:
+#   - name: default
+#     selectors:
+#       # All workloads in the "default" Kubernetes namespace will be
+#       # scheduled onto Fargate:
+#       - namespace: default
+#       # All workloads in the "kube-system" Kubernetes namespace will be
+#       # scheduled onto Fargate:
+#       - namespace: kube-system
 # iam:
 #   withOIDC: true
 
