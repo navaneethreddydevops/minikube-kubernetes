@@ -8,11 +8,11 @@ spec:
       image: navaneethreddydevops/jenkins:1.0
       imagePullPolicy: Always
       volumeMounts:
-      - name: tls-certs
-        mountPath: "/tls"
-        readOnly: true
+        - name: tls-certs
+          mountPath: "/tls"
+          readOnly: true
   imagePullSecrets:
-  - name:  my-image-pull-secret
+    - name: my-image-pull-secret
   volumes:
     - name: tls-certs
       secret:
