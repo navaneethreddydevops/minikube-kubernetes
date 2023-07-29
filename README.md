@@ -17,3 +17,4 @@ eksctl create cluster --name kubernetes-cluster \
 eksctl get clusters
 ```
 
+aws eks update-kubeconfig --region us-west-2 --name eks-cluster-fargate
