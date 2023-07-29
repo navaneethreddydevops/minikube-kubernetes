@@ -12,7 +12,15 @@ nodeGroups:
   - name: ng-1
     labels: { role: workers }
     instanceType: m5.large
-    desiredCapacity: 3
+    desiredCapacity: 1
+  - name: ng-2
+    labels: { role: workers }
+    instanceType: t2.micro
+    desiredCapacity: 2
+  - name: ng-3
+    labels: { role: workers }
+    instanceType: t2.micro
+    desiredCapacity: 1
 
 cloudWatch:
   clusterLogging:
